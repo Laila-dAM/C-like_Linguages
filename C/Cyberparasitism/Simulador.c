@@ -14,7 +14,7 @@ typedef struct {
 
 typedef struct {
     int health;
-    int defense pattern[3];
+    int defense_pattern[3];
 } ImmuneSystem;
 
 void initialize_virus(Virus *virus){
@@ -23,7 +23,7 @@ void initialize_virus(Virus *virus){
 }
 
 void initialize_immune_system(ImmuneSystem *immune_system) {
-    immune system->health = MAX_HEALTH
+    immune_system->health = MAX_HEALTH;
         for (int i = 0; i < 3; i++){
             immune_system->defense_pattern[i] = rand() % 3 + 1;
         }
@@ -41,24 +41,24 @@ int simulate_attack(Virus *virus, ImmuneSystem *immune_system, int difficulty) {
     } else {
         printf("Virus successfully bypassed the defense!\n");
         immune_system->health -= 10;
-    if(difficulty >= MEDIUM){
+    
+        if(difficulty >= MEDIUM) {
         virus->adaptation += 1;
-        if(virus->adaptation >= 5 && difficulty == HARD){
+        if(virus->adaptation >= 5 && difficulty == HARD) {
             printf("Virus adapts its strategy!\n");
             immune_system->defense_pattern[attack_pattern - 1] = rand() % 3 + 1;
-    immune pattern
             virus->adaptation = 0;
         }
     }
 }
     return (virus->health > 0 && immune_system->health > 0);
 }
-void game_loop(int defficulty){
+void game_loop(int difficulty) {
     Virus virus;
     ImmuneSystem immune_system;
 
-initialize virus(&virus):
-    initialize_immune_system(&immune_system);
+initialize_virus(&virus);
+initialize_immune_system(&immune_system);
     printf("\nCyberparasitism Simulator\n");
     printf("Virus vs Immune System\n");
     printf("Difficulty level: %s\n\n", difficulty == EASY ? "EASY" : (difficulty == MEDIUM ? "Medium" : "Hard"));
@@ -74,4 +74,7 @@ initialize virus(&virus):
 }
 int main() {
     srand(time(NULL));
+    int difficulty = MEDIUM;
+    game_loop(difficulty);
+    return 0;
 }
