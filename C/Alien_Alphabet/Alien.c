@@ -56,7 +56,75 @@ int main(){
         generateCharacter(&alphabet.characters[i], complexity);
     }
     alphabet.numCharacters = num;
+    printf("Alphabet generated with %d characters.\n", num);
+    break;
+            }
+
+    case '2': {
+        displayAlphabet(&alphabet);
+        break;
+    }
+    case '3': {
+        printf("Enter file name to save as text: ");
+        char fileName[100];
+        scanf("%s", fileName);
+        saveAsText(fileName, &alphabet);
+        break;
+    }
+    case '4': {
+        printf("Enter file name to save as image: ");
+        char fileName[100];
+        scanf("%s", fileName);
+        saveAsImage(fileName, &alphabet);
+        break;
+    }
+    case 'q': {
+        printf("Exiting application.\n");
+        break;
+    }
+    default: {
+        printf("Invalid choice. Try again.\n");
+        break;
+        }
+    }
+} while (choice !='q');
+    return 0;
+}
+void generateCharacter(Character *character, int complexity) {
+    character->id = rand() % 1000;
+    clearGrid(character->drawing);
+
+    for(int i = 0; i < complexity; i++){
+        int x = rand() % GRID_SIZE;
+        int y = rand() % GRID_SIZE;
+        character->drawing[x][y] = '#';
+    }
+}
+void drawCharacter(char grid[GRID_SIZE][GRID_SIZE]) {
+    printGrid(grid);
+}
+
+char* applyRules(char* baseWord, int ruleType) {
+    static char modifiedWord[MAX_WORD_LENGTH];
+    strcpy(modifiedWord, baseWord);
+
+    if(ruleType == 1) {
+        for(int i = 0; i < strlen(modifiedWord); i++) {
+            if(strchr("aeiou", modifiedWord[i])) {
+                modifiedWord[i] = '*';
             }
         }
     }
+return modifiedWord;
+}
+int validateWord(char* word){
+    for(int i = 1; i < strlen(word); i++){
+        if(word[i] == word[i - 1]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+void showMenu(){
+    
 }
