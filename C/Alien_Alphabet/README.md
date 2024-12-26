@@ -1,0 +1,1 @@
+A C application that generates unique alien alphabets with mathematical algorithms, allows word creation with simple linguistic rules, and exports results as text files or ASCII images. Includes modules for procedural character generation, word editing, linguistic validation, and export, and provides an interactive terminal-based interface and customization support.
