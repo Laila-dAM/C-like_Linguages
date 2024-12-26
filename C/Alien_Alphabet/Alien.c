@@ -126,5 +126,59 @@ int validateWord(char* word){
     return 1;
 }
 void showMenu(){
+    printf("\nAlien Alphabet Creation Machine\n");
+    printf("1. Generate new alphabet\n");
+    printf("2. Display alphabet\n");
+    printf("3. Save alphabet as text\n");
+    printf("4. Save alphabet as ASCII image\n");
+    printf("q. Quit\n");
+    printf("Choose an option: ");
+}
+void captureInput(){
     
+}
+void displayAlphabet(Alphabet *alphabet){
+    for(int i = 0; i < alphabet->numCharacters; i++){
+        printf("Character %d:\n" alphabet->character[i].id);
+        drawCharacter(alphabet->characters[i].drawing);
+        
+    }
+}
+void saveAsText(char* fileName, Alphabet *alphabet){
+    FILE *file = fopen(fileName, "w");
+    if (file == NULL){
+        printf("Error: Could not open file for writing.\n");
+        return;
+    }
+for (int i = 0; i < alphabet->numCharacters; i++){
+    fprintf(file, "Character %d:\n", alphabet->characters[i].id);
+    for(int x = 0; x < GRID_SIZE; x++){
+        for (int y = 0; y < GRID_SIZE; y++){
+            fputc(alphabet->characters[i].drawing[x][y],file);
+            
+        }
+    fputc('\n', file);
+    }
+    fprintf(file, "\n");
+}
+    fclose(file);
+    printf("Alphabet saved to %s\n", fileName);
+}
+void saveAsImage(char* fileName, Alphabet *alphabet){
+    printf("Feature not yet implemented.\n");
+}
+void clearGrid(char grid[GRID_SIZE][GRID_SIZE]) {
+    for(int x = 0; x < GRID_SIZE; x++){
+        for (int y = 0; y < GRID_SIZE; y++){
+            grid[x][y] = '';
+        }
+    }
+}
+void printGrid(char grid[GRID_SIZE][GRID_SIZE]) {
+    for(int x = 0; x < GRID_SIZE; x++){
+        for(int y = 0; y < GRID_SIZE; y++){
+            putchar(grid[x][y]);
+        }
+        putchar('\n');
+    }
 }
