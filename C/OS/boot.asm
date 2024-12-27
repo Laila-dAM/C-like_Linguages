@@ -17,4 +17,8 @@ start:
     int 0x10
     mov al, 'g'
     int 0x10
+    jmp 0x1000
+
+times 510-($-$$) db 0
+dw 0xAA55
     
