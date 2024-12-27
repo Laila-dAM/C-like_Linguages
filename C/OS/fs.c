@@ -20,5 +20,13 @@ void initialize_filesystem(void) {
     }
 }
 int create_file(char* name, uint32_t size){
-    
+    for(int i = 0; i < MAX_FILES; i++){
+        if(files[i].name[0] == '\0'){
+            strncpy(files[i].name, name, MAX_FILE_NAME);
+            files[i].size = size;
+            files[i].start_address = (uint32_t)malloc(size);
+            return 0;
+        }
+    }
+    return -1;
 }
