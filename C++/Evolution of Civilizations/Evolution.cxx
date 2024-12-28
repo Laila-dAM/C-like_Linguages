@@ -39,4 +39,65 @@ if(environment < 30){
     std::cout << "You environment is in decline, affecting the economy and population!" <<std:endl;
 }
 }
+void displayStatus(){
+    std::cout<< "\nCivilization: "<< name << std::endl;
+        std::cout<< "Population: "<< population << std::endl;
+        std::cout<< "Economy: "<< economy << std::endl;
+        std::cout<< "Military: "<< military << std::endl;
+        std::cout<< "Culture: "<< culture << std::endl;
+        std::cout<< "Politics: "<< politics << std::endl;
+        std::cout<< "Resources: "<< resources << std::endl;
+        std::cout<< "Technology: "<< technology << std::endl;
+        std::cout<< "Environment: "<< environment << std::endl;
+         std::cout<< "At War: "<< (isAtWas ? "Yes" : "No") << std::endl;
+        std::cout<< "Allied: "<< (isAllied ? "Yes" : "No") << std::endl;
+
+}
+void handleEvent(int eventChoice){
+    switch(eventChoice){
+        case 1:
+        economy -= 20;
+        std::cout << "An economic crisis has struck! Economy decreases." << std::endl;
+        break;
+
+        case 2:
+        isAtWar = true;
+        std::cout << "Your civilization is now at war!" << std::endl;
+        break;
+
+        case 3:
+        culture += 15;
+        std::cout << "A cultural renaissance boosts your civilization's culture!" << std::endl;
+        break;
+
+        case 4:
+        politics -= 10;
+        std::cout << "Political unrest lowers your politics!" << std:endl;
+        break;
+
+        case 5: 
+        resources += 50;
+        std::cout << "Your civilization has discovered new resources!" << std::endl;
+        break;
+
+        case 6:
+        technology += 20;
+        std::cout << "A technological breakthrough has occurred! Technology increases." << std::endl;
+        break;
+
+        case 7:
+        environment -= 15;
+        std::cout << "An enviromental disaster has struck! Environment decreases." << std::endl;
+        break;
+
+        case 8:
+        isAllied = true;
+        std::cout << "Your civilization has formed an alliance with another civilization!" << std::endl;
+        break;
+
+        default:
+        std::cout << "No event occurred." << std::endl;
+        break;
+    }
+}
 }
