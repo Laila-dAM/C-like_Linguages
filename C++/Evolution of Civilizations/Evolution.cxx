@@ -1,4 +1,4 @@
-#include <ionstream>
+#include <iostream>
 #include <vector>
 #include <string>
 #include <ctime>
@@ -29,14 +29,14 @@ void evolve(int politicalChoice, int economicChoice, int culturalChoice, int tec
     technology += techChoice;
     environment += envChoice;
 
-if(isWar){
+if(isAtWar){
     military -= (population/50);
     economy -= 10;
 }
 if(environment < 30){
     economy -= 5;
     population -= 10;
-    std::cout << "You environment is in decline, affecting the economy and population!" <<std:endl;
+    std::cout << "You environment is in decline, affecting the economy and population!" <<std::endl;
 }
 }
 void displayStatus(){
@@ -49,7 +49,7 @@ void displayStatus(){
         std::cout<< "Resources: "<< resources << std::endl;
         std::cout<< "Technology: "<< technology << std::endl;
         std::cout<< "Environment: "<< environment << std::endl;
-         std::cout<< "At War: "<< (isAtWas ? "Yes" : "No") << std::endl;
+         std::cout<< "At War: "<< (isAtWar ? "Yes" : "No") << std::endl;
         std::cout<< "Allied: "<< (isAllied ? "Yes" : "No") << std::endl;
 
 }
@@ -72,7 +72,7 @@ void handleEvent(int eventChoice){
 
         case 4:
         politics -= 10;
-        std::cout << "Political unrest lowers your politics!" << std:endl;
+        std::cout << "Political unrest lowers your politics!" << std::endl;
         break;
 
         case 5: 
@@ -122,5 +122,61 @@ void makeDecision(Civilization& civ){
 void triggerRandomEvent(Civilization& civ){
     srand(time(0));
     int eventChoice = rand () % 9;
+    civ.handleEvent(eventChoice);
 }
+
+void interactWithDiplomacy(Civilization& civ){
+    char diplomacyChoice;
+        std::cout << "\nDo you want to interact with another civilization? (y/n): ";
+    std::cin >> diplomacyChoice;
+
+if (diplomacyChoice == 'y' || diplomacyChoice == 'Y'){
+    char allianceChoice;
+    std::cout << "Do you want to form an alliance with this civilization? (y/n): ";
+    std::cin >> allianceChoice;
+
+if(allianceChoice == 'y' || allianceChoice == 'Y'){
+    civ.isAllied = true;
+    std::cout << "Alliance formed! Your civilization is now allied." << std::endl;
+} else {
+    std::cout << "You choose not to farm an alliance." << std::endl;
+}
+}
+}
+ std::string determineCountry(Civilization& civ) {
+        if (civ.economy > 80 && civ.military > 80) return "Militaristic Power (e.g., Sparta)";
+        if (civ.economy > 80 && civ.culture > 80) return "Cultural Superpower (e.g., Athens)";
+        if (civ.environment > 70 && civ.resources > 80) return "Environmentally Friendly Nation (e.g., Costa Rica)";
+        if (civ.politics > 70 && civ.resources > 80) return "Politically Stable Nation (e.g., Switzerland)";
+        if (civ.technology > 80 && civ.economy > 70) return "Technological Superpower (e.g., Japan)";
+        return "A balanced civilization!";
+    }
+};
+
+int main() {
+    Civilization civ1("Alpha");
+    Player player;
+
+    char continueGame;
+    do {
+        civ1.displayStatus();
+        player.makeDecision(civ1);
+        player.triggerRandomEvent(civ1);
+        player.interactWithDiplomacy(civ1);
+
+        std::cout << "\nDo you want to continue evolving your civilization? (y/n): ";
+        std::cin >> continueGame;
+
+        if (civ1.population <= 0 || civ1.economy <= 0 || civ1.resources <= 0 || civ1.environment <= 0) {
+            std::cout << "Your civilization has collapsed!" << std::endl;
+            break;
+        }
+
+    } while (continueGame == 'y' || continueGame == 'Y');
+
+    std::cout << "\nGame Over!" << std::endl;
+    std::cout << "Your civilization most resembles: " << player.determineCountry(civ1) << std::endl;
+
+    return 0;
+
 }
