@@ -100,4 +100,27 @@ void handleEvent(int eventChoice){
         break;
     }
 }
+};
+
+class Player {
+public:
+void makeDecision(Civilization& civ){
+    int politicalChoice, economicChoice, culturalChoice, techChoice, envChoice;
+    std::cout << "\nChoose your civilization's political focus (1-15): ";
+    std::cin >> politicalChoice;
+    std::cout << "Choose your civilization's economic focus (1-5): ";
+     std::cin >> economicChoice;
+        std::cout << "Choose your civilization's cultural focus (1-5): ";
+        std::cin >> culturalChoice;
+        std::cout << "Choose your civilization's technological investment (1-5): ";
+        std::cin >> techChoice;
+        std::cout << "Choose your civilization's environmental focus (1-5): ";
+        std::cin >> envChoice;
+
+        civ.evolve(politicalChoice, economicChoice, culturalChoice, techChoice, envChoice);
+}
+void triggerRandomEvent(Civilization& civ){
+    srand(time(0));
+    int eventChoice = rand () % 9;
+}
 }
