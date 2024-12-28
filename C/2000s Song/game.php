@@ -22,5 +22,23 @@ $selectedMusic = $musics[$randomIndex];
         <div class="emoji">
             <?php acho $selectedMusic['emojis'];?>
         </div>
-        
-</html>
+    <div class="options">
+        <?php foreach ($selectedMusic['options'] as $option) : ?>
+    <button onclick="checkAnswer('<?php echo $option; ?>', '<?php echo $selectedMusic['answer'];?>')">
+        <?php echo $option; ?>
+        </button>
+    <?php endforeach; ?>
+</div>
+
+<div id="feedback"></div>
+    <script>
+        function checkAnswer(selected, correctAnswer) {
+            if (selected === correctAnswer){
+    document.getElementByld('feedback').innerText = 'Correct! Click "Next Song" to continue. ';
+            } else {
+                document.getElementById('feedback').innerText = 'Try again! The correct answer is ' + correctAnswer;
+            }
+        }
+</script>
+        </body>
+            </html>
