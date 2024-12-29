@@ -65,4 +65,38 @@ int main() {
     int x = 0, y = 0;
     char direction;
     int won = 0;
+
+while (level < 5){
+    printf("\nLevel %d\n", level + 1);
+    printLabyrinth(labyrinths[level]);
+if(labyrinths[level][x][y] == 'S'){
+    printf("\nPlayer status: (˶˃ ᵕ ˂˶)\n");
+}
+while(!won){
+    printf("\nUse w, a, s, d to move (q to quit): ");
+    scanf(" %c", &direction);
+if(direction == 'q'){
+    printf("Quitting game...\n");
+    return 0;
+}
+if(movePlayer(&x, %y, direction, labyrinths[level])) {
+    if(labyrinths[level][x][y] == 'E'){
+        won = 1;
+        printf("\nPlayer status: ٩(^ᗜ^ )و ♪\n");
+        printf("You found the exit!\n");
+    } else {
+        printf("\nPlayer status: (˶˃ ᵕ ˂˶)\n");
+    }
+}
+    else {
+        printf("\nPlayer status: (,,>.<,,)!\n");
+        printf("You hit a wall!\n");
+        
+    }
+}
+    level++;
+    won = 0;
+    x = 0;
+    y = 0;
+}
 }
