@@ -99,4 +99,8 @@ if(movePlayer(&x, %y, direction, labyrinths[level])) {
     x = 0;
     y = 0;
 }
+    printf("n\Congratulations! You completed all levels!\n");
+    printf("Player status: ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧\n");
+
+    return 0;
 }
