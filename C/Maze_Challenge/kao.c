@@ -44,7 +44,7 @@ void printLabyrinth(char labyrinth[SIZE][SIZE]){
         printf("%s\n", labyrinth[i]);
     }
 }
-int movePlaver(int *x, int *y, char direction, char labyrinth[SIZE][SIZE]) {
+int movePlayer(int *x, int *y, char direction, char labyrinth[SIZE][SIZE]) {
     int newX = *x;
     int newY = *y;
 
@@ -79,7 +79,7 @@ if(direction == 'q'){
     printf("Quitting game...\n");
     return 0;
 }
-if(movePlayer(&x, %y, direction, labyrinths[level])) {
+if(movePlayer(&x, *y, direction, labyrinths[level])) {
     if(labyrinths[level][x][y] == 'E'){
         won = 1;
         printf("\nPlayer status: ٩(^ᗜ^ )و ♪\n");
