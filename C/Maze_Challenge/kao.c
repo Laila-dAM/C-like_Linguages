@@ -79,7 +79,7 @@ if(direction == 'q'){
     printf("Quitting game...\n");
     return 0;
 }
-if(movePlayer(&x, *y, direction, labyrinths[level])) {
+if(movePlayer(&x, &y, direction, labyrinths[level])) {
     if(labyrinths[level][x][y] == 'E'){
         won = 1;
         printf("\nPlayer status: ٩(^ᗜ^ )و ♪\n");
@@ -99,7 +99,7 @@ if(movePlayer(&x, *y, direction, labyrinths[level])) {
     x = 0;
     y = 0;
 }
-    printf("n\Congratulations! You completed all levels!\n");
+    printf("\nCongratulations! You completed all levels!\n");
     printf("Player status: ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧\n");
 
     return 0;
