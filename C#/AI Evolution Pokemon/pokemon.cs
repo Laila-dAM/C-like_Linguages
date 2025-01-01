@@ -31,4 +31,37 @@ class EvolutionSimulator {
     private List<Pokemon> Population;
     private Random RandomGenerator;
 
+public EvolutionSimulator(string climate, double mutationRate, string resourceScarcity, int populationSize) {
+    Climate = climate;
+    MutationRate = mutationRate;
+    ResourceScarcity = resourceScarcity;
+    RandomGenerator = new Random();
+    Population = GenerateInitialPopulation(populationSize);
+}
+public void RunSimulation(int generations) {
+    for(int generation = 1; generation <= generations; generation++) {
+        EvaluateFitness();
+        Reproduce();
+        Mutate();
+
+            Console.WriteLine($"Generation {generation}: Average Fitness = {Population.Average(p => p.Fitness):F2}, Population Size = {Population.Count}");
+    }
+Console.WriteLine("Simulation Complete!");
+}
+private List<Pokemon> GenerateInitialPopulation(int size){
+    var initialPopulation = new List<Pokemon>();
+    for(int i = 0; i < size; i++) {
+                    initialPopulation.Add(new Pokemon(RandomGenerator.Next(1, 101), RandomGenerator.Next(1, 101), RandomGenerator.Next(1, 101)));
+
+    }
+    return initialPopulation;
+}
+private void EvaluateFitness() {
+    foreach (var pokemon in Population) {
+        pokemon.Fitness = CalculateFitness(pokemon);
+    }
+        Population = Population.OrderByDescending(p => p.Fitness).Take(Population.Count / 2).ToList();
+
+}
+
 }
