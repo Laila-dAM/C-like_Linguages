@@ -117,5 +117,41 @@ while(!isOperatorStackEmpty(&operatorStack)){
     postfix[j] = '\0';
     }
 double evaluatePostfix(char *postfix){
+    OperandStack operandStack;
+    initOperandStack(&operandStack);
+    int i = 0;
+    char buffer[MAX];
+
+while(postfix[i] != '\0'){
+    if(isdigit(postfix[i]) || postfin[i] == '.'){
+        int j = 0;
+
+while(isdigit(postfix[i]) || postfix[i] == '.'){
+    buffer[j++] = postfix[i++];
+}
+    buffer[j] = '\0';
+    pushOperand(&operandStack, atof(buffer));
+    }
+else if (isOperator(postfix[i])){
+    double b = popOperand(&operandStack);
+    double a = popOperand(&operandStack);
+    switch(postfix[i]) {
+        case '+': pushOperand(&operandStack, a + b); break;
+        case '-': pushOperand(&operandStack, a - b); break;
+        case '*': pushOperand(&operandStack, a * b); break;
+        case '/': pushOperand(&operandStack, a / b); break;
+        case '^': pushOperand(&operandStack, pow(a, b)); break;
+   
+}
+    i++;
+} 
+    else {
+        i++;
+        
+    }
+}
+    return popOperand(&operandStack);
+}
+int main() {
     
 }
