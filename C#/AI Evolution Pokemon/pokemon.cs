@@ -122,5 +122,17 @@ public Pokemon Mate(Pokemon partner){
 }
 public void Mutate(){
     int mutation = RandomGenerator.Next(-10, 11);
+
+switch(RandomGenerator.Next(3)) {
+    case 0:
+    Speed = Math.Max(1, Speed + mutation);
+    break;
+    case 1:
+    Power = Math.Max(1, Power + mutation);
+    break;
+    case 2:
+    Defense = Math.Max(1, Defense + mutation);
+    break;
+}
 }
 }
