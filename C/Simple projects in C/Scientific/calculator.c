@@ -79,5 +79,43 @@ int isOperator(char ch){
         return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
 }
 void infixToPostfix(char *infix, char *postfix) {
+    OperatorStack operatorStack;
+    initOperatorStack(&operatorStack);
+    int i = 0, j = 0;
+
+while(infix[i] !='\0'){
+    if(isdigit(infix[i]) || infix[i] == '.') {
+        postfix[j++] = infix[i];
+    }
+    else if (isOperator(infix[i])) {
+        postfix[j++] = '';
+            while (!isOperatorStackEmpty(&operatorStack) && precedence(operatorStack.data[operatorStack.top]) >= precedence(infix[i])) {
+
+                postfix[j++] = popOperator(&operatorStack);
+    postfix[j++] = '';
+        
+    }
+pushOperator(&operatorStack, infix[i]);
+        
+} else if (infix[i] == '('){
+        pushOperator(&operatorStack, infix[i]);
+}
+    else if(infix[i] == ')'){
+            while (!isOperatorStackEmpty(&operatorStack) && operatorStack.data[operatorStack.top] != '(') {
+postfix[j++] = popOperator(&operatorStack);
+    postfix[j++] = '';
+}
+popOperator(&operatorStack);
+    }
+    i++;
+    
+}
+while(!isOperatorStackEmpty(&operatorStack)){
+    postfix[j++] = '';
+    postfix[j++] = popOperator(&operatorStack);
+}
+    postfix[j] = '\0';
+    }
+double evaluatePostfix(char *postfix){
     
 }
