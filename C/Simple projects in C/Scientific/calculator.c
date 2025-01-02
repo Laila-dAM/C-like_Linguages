@@ -61,3 +61,23 @@ char popOperator(OperatorStack *stack) {
         return '\0';
     }
 }
+int precedence(char op){
+    switch (op) {
+        case '+':
+        case '-':
+            return 1;
+        case '*':
+        case '/':
+            return 2;
+        case '^':
+            return 3;
+        default:
+            return 0;
+    }
+}
+int isOperator(char ch){
+        return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
+}
+void infixToPostfix(char *infix, char *postfix) {
+    
+}
