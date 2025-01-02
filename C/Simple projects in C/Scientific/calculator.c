@@ -153,5 +153,13 @@ else if (isOperator(postfix[i])){
     return popOperand(&operandStack);
 }
 int main() {
-    
+    char infix[MAX], postfix[MAX];
+    printf("Enter an expression: ");
+    fget(infix, MAX, stdin);
+    infix[strcspn(infix, "\n")] = '\0';
+
+    infixToPostfix(infix, postfix);
+    printf("Postfix: %s\n", postfix);
+    printf("Result: %lf\n", evaluatePostfix(postfix));
+    return 0;
 }
