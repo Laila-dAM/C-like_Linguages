@@ -25,3 +25,39 @@ void initOperatorStack(OperatorStack *stack){
 int isOperandStackEmpty(OperandStack *stack){
     return stack->top == -1;
 }
+int isOperatorStackEmpty(OperatorStack *stack){
+    return stack->top == -1;
+}
+void pushOperand(OperandStack *stack, double value){
+    if(stack->top < MAX -1){
+        stack->data[++stack->top] = value;
+    }
+    else {
+        printf("Error: Operand stack overflow\n");
+    }
+}
+double popOperand(OperandStack *stack){
+    if(!isOperandStackEmpty(stack)){
+        return stack->data[stack->top--];
+    } 
+    else {
+        printf("Error: Operand stack underflow\n");
+        return 0;
+    }
+}
+void pushOperator(OperatorStack *stack, char value){
+    if(stack->top < MAX - 1){
+        stack->data[++stack->top] = value;
+    } else {
+        printf("Error: Operator stack overflow\n");
+    }
+}
+char popOperator(OperatorStack *stack) {
+    if (!isOperatorStackEmpty(stack)) {
+        return stack->data[stack->top--];
+    }
+    else {
+        printf("Error: Operator stack underflow\n");
+        return '\0';
+    }
+}
