@@ -88,11 +88,11 @@ while(infix[i] !='\0'){
         postfix[j++] = infix[i];
     }
     else if (isOperator(infix[i])) {
-        postfix[j++] = '';
+        postfix[j++] = ' ';
             while (!isOperatorStackEmpty(&operatorStack) && precedence(operatorStack.data[operatorStack.top]) >= precedence(infix[i])) {
 
                 postfix[j++] = popOperator(&operatorStack);
-    postfix[j++] = '';
+    postfix[j++] = ' ';
         
     }
 pushOperator(&operatorStack, infix[i]);
@@ -103,7 +103,7 @@ pushOperator(&operatorStack, infix[i]);
     else if(infix[i] == ')'){
             while (!isOperatorStackEmpty(&operatorStack) && operatorStack.data[operatorStack.top] != '(') {
 postfix[j++] = popOperator(&operatorStack);
-    postfix[j++] = '';
+    postfix[j++] = ' ';
 }
 popOperator(&operatorStack);
     }
@@ -111,7 +111,7 @@ popOperator(&operatorStack);
     
 }
 while(!isOperatorStackEmpty(&operatorStack)){
-    postfix[j++] = '';
+    postfix[j++] = ' ';
     postfix[j++] = popOperator(&operatorStack);
 }
     postfix[j] = '\0';
@@ -123,7 +123,7 @@ double evaluatePostfix(char *postfix){
     char buffer[MAX];
 
 while(postfix[i] != '\0'){
-    if(isdigit(postfix[i]) || postfin[i] == '.'){
+    if(isdigit(postfix[i]) || postfix[i] == '.'){
         int j = 0;
 
 while(isdigit(postfix[i]) || postfix[i] == '.'){
@@ -155,7 +155,7 @@ else if (isOperator(postfix[i])){
 int main() {
     char infix[MAX], postfix[MAX];
     printf("Enter an expression: ");
-    fget(infix, MAX, stdin);
+    fgets(infix, MAX, stdin);
     infix[strcspn(infix, "\n")] = '\0';
 
     infixToPostfix(infix, postfix);
